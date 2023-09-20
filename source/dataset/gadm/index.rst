@@ -3,41 +3,40 @@ GADM: 全球行政区划数据库
 
 **GADM主页**：https://gadm.org/
 
-GADM，全称Database of Global Administrative Areas，是一个高精度的全球行政区划
+GADM，全称 Database of Global Administrative Areas，是一个高精度的全球行政区划
 数据库。其包含了全球所有国家和地区的国界、省界、市界、区界等多个级别的行政区划边界数据。
 
 .. warning::
 
-    GADM提供的中国国界数据不符合中国的领土主张，省界、市界、区界等数据也不一定
+    GADM 提供的中国国界数据不符合中国的领土主张，省界、市界、区界等数据也不一定
     是最新的版本。在正式刊物中发表使用此类数据的图件时需格外谨慎。
 
 数据下载
 --------
 
-GADM提供了两种下载方式：
+GADM 提供了两种下载方式：
 
 #. 下载全球所有国家和地区的所有数据 https://gadm.org/download_world.html
-#. 按国家下载 https://gadm.org/download_country_v3.html
+#. 按国家下载 https://gadm.org/download_country.html
 
 由于全球数据量巨大，建议根据需要按照国家下载数据。
 
-需要说明的是，GADM 中对country 的定义为
-“any entity with `an ISO country code <http://zh.wikipedia.org/wiki/ISO_3166-1>`_\ ”。
-因而如果想要下载完整的中国数据，实际上需要下载China、Hong Kong、Macao和Taiwan
+需要说明的是，GADM 中对 country 的定义为
+“any entity with `an ISO country code <http://zh.wikipedia.org/wiki/ISO_3166-1>`__”。
+因而如果想要下载完整的中国数据，实际上需要下载 China、Hong Kong、Macao 和 Taiwan
 四个数据。
 
-由于GADM提供的中国国界数据不符合我国领土主张，本文以美国数据为例介绍数据下载及使用。
+由于 GADM 提供的中国国界数据不符合我国领土主张，本文以美国数据为例介绍数据下载及使用。
 
 数据格式及转换
 --------------
 
-对于每个数据，GADM提供了5种不同的格式：
+对于每个数据，GADM 提供了5种不同的格式：
 
-- Geopackage：可以被GDAL/OGR、ArcGIS、QGIS等软件读取
-- Shapefile：可直接用于ArcGIS等软件
-- KMZ：可直接在Google Earth中打开
-- R (sp)：可直接用于R语言绘图
-- R (sf)：可直接用于R语言绘图
+- Geopackage：可以被 GDAL、ArcGIS、QGIS 等软件读取
+- Shapefile：可直接用于 GMT、ArcGIS 等软件
+- GeoJSON
+- KMZ：可直接在 Google Earth 中打开
 
 如果在安装GMT时，GMT已经正确链接了GDAL库，则Shapefile格式的数据可以直接用于绘图。
 实际绘图时，可能只想要一小部分数据（比如某个省/州的界线），这种情况下，则需要将
