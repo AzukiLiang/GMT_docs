@@ -38,48 +38,9 @@ GADM 提供了两种下载方式：
 - GeoJSON
 - KMZ：可直接在 Google Earth 中打开
 
-如果在安装GMT时，GMT已经正确链接了GDAL库，则Shapefile格式的数据可以直接用于绘图。
+如果在安装 GMT 时，GMT 已经正确链接了 GDAL 库，则 Shapefile 格式的数据可以直接用于绘图。
 实际绘图时，可能只想要一小部分数据（比如某个省/州的界线），这种情况下，则需要将
 数据转换成纯文本文件，以方便从数据中提取出需要的部分。
-
-GDAL 的 :ref:`ogr2ogr <ogr2ogr>` 命令可以实现多种地理数据格式之间的互相转换。
-
-下面的示例使用了 GADM v3.6，在 GDAL 2.4.2 和 3.1.2 下测试通过，其它版本的 GDAL 也许用法略有不同。
-
-Geopackage转GMT
-~~~~~~~~~~~~~~~
-
-以United States数据为例，解压得到文件 :file:`gadm36_USA.gpkg`。使用如下命令查看文件的信息::
-
-    $ ogrinfo gadm36_USA.gpkg
-    INFO: Open of `gadm36_USA.gpkg'
-          using driver `GPKG' successful.
-    1: gadm36_USA_2 (Multi Polygon)
-    2: gadm36_USA_1 (Multi Polygon)
-    3: gadm36_USA_0 (Multi Polygon)
-
-可以看到Geopackage文件中包含了三个文件，分别是3个不同等级的边界。
-使用如下命令（注意其中的一对单引号不可省略）将其转换为GMT可识别的格式::
-
-    ogr2ogr -f OGR_GMT '' gadm36_USA.gpkg gadm36_USA_0
-    ogr2ogr -f OGR_GMT '' gadm36_USA.gpkg gadm36_USA_1
-    ogr2ogr -f OGR_GMT '' gadm36_USA.gpkg gadm36_USA_2
-
-最终得到以 :file:`.gmt` 结尾的数据3个。
-
-Shapefile转GMT
-~~~~~~~~~~~~~~
-
-以 United States 数据为例，将下载的ZIP压缩包解压会得到
-:file:`gadm36_USA_[012].shp` 3组Shapefile数据文件。
-
-使用如下命令即可将Shapefile转换为GMT可识别的格式::
-
-    ogr2ogr -f OGR_GMT gadm36_USA_0.gmt gadm36_USA_0.shp
-    ogr2ogr -f OGR_GMT gadm36_USA_1.gmt gadm36_USA_1.shp
-    ogr2ogr -f OGR_GMT gadm36_USA_2.gmt gadm36_USA_2.shp
-
-最终得到以 :file:`.gmt` 结尾的数据3个。
 
 数据分级
 --------
